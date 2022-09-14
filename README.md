@@ -1,75 +1,11 @@
-# Data analysis
-- Document here the project: WorkingPaper
-- Description: Project Description
-- Data Source:
-- Type of analysis:
+# About PaperFellow
 
-Please document the project the better you can.
+PaperFellow was built by four devoted participants of Le Wagon's Data Science Bootcamp as a final project within 10 days.
 
-# Startup the project
+It aims to classify scientific papers based on content. For getting the data for supervised classification, we web scraped [ArXiv.org](arxiv.org) (an open-access archive for scholarly articles) and requested the [OpenAlex API](https://en.wikipedia.org/wiki/Our_Research#OpenAlex). The academic field delivered when obtaining the data in PDF format, served as a target.
 
-The initial setup.
+In data preprocessing, using NLP techniques, we cut away any distracting characters, signs and words and reduced the remaining words to their inflected form. We used n-grams (grouping consecutive words together), to facilitate our models to distinguish academic fields more easily. Then we fed numeric representations of our text data into different models: a Support Vector Machine, a CNN-based neural network and two Recurrent Neurel Networks (one with an embedding layer, another with a pretrained Word2Vec embedding).
 
-Create virtualenv and install the project:
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv ~/venv ; source ~/venv/bin/activate ;\
-    pip install pip -U; pip install -r requirements.txt
-```
+The Support Vector Machine resulted in the best performance of all those approaches we tried (91 percent accuracy, when four targets were given).
 
-Unittest test:
-```bash
-make clean install test
-```
-
-Check for WorkingPaper in gitlab.com/{group}.
-If your project is not set please add it:
-
-- Create a new project on `gitlab.com/{group}/WorkingPaper`
-- Then populate it:
-
-```bash
-##   e.g. if group is "{group}" and project_name is "WorkingPaper"
-git remote add origin git@github.com:{group}/WorkingPaper.git
-git push -u origin master
-git push -u origin --tags
-```
-
-Functionnal test with a script:
-
-```bash
-cd
-mkdir tmp
-cd tmp
-WorkingPaper-run
-```
-
-# Install
-
-Go to `https://github.com/{group}/WorkingPaper` to see the project, manage issues,
-setup you ssh public key, ...
-
-Create a python3 virtualenv and activate it:
-
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv -ppython3 ~/venv ; source ~/venv/bin/activate
-```
-
-Clone the project and install it:
-
-```bash
-git clone git@github.com:{group}/WorkingPaper.git
-cd WorkingPaper
-''' If you are using a M1 mac : use requirements_M1.txt '''
-pip install -r requirements.txt
-make clean install test                # install and test
-```
-Functionnal test with a script:
-
-```bash
-cd
-mkdir tmp
-cd tmp
-WorkingPaper-run
-```
+We also deployed our project on a Heroku page and built a workflow that would allow us to automate the model maintainance.
